@@ -1,0 +1,53 @@
+{% extends 'artist/base.html.twig' %}
+
+{% block title %} Liste de vos albums {% endblock %}
+
+{% block body %}
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-th-list"></i> Liste de mes Albums</h1>
+            <p>La liste des album que vous avez créer, <a href="{{ path('artist_album_new') }}"><i class="fa fa-plus"></i> Ajouter un album</a></p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item">Gestion Album</li>
+            <li class="breadcrumb-item active"><a href="#">Liste d'album</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <table class="table table-hover table-bordered" id="sampleTable">
+                        <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Titre</th>
+                            <th>Date de sortie </th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for album in albums %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ album.Titre }}</td>
+                            <td>{{ album.createdAt|date('d/m/Y à H:i') }}</td>
+                            <td>
+                                <a href="{{ path('artist_album_show', {'id': album.id}) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('artist_album_edit', {'id': album.id}) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                {{ include('artist/album/_delete_form.html.twig') }}
+                            </td>
+                        </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5">Vous n'avez pas d'album crée un album <a href="{{ path('artist_album_new') }}"><i class="fa fa-plus"></i> Ajouter</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

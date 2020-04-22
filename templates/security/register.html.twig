@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}S'inscrire {% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.min.css') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- ##### Breadcumb Area Start ##### -->
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url({{ asset('img/bg-img/breadcumb3.jpg') }});">
+        <div class="bradcumbContent">
+            <p>Vous êtes artiste</p>
+            <h2>S'inscrire</h2>
+        </div>
+    </section>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Login Area Start ##### -->
+    <section class="login-area section-padding-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="login-content">
+                        <h3>Inscription</h3>
+                        <!-- Login Form -->
+                        <div class="login-form">
+                            {{ form_start(form) }}
+                                <div class="form-group">
+                                    {{ form_row(form.LastName) }}
+                                    <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_row(form.firstName) }}
+                                    <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_row(form.Username) }}
+                                    <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_row(form.email) }}
+                                    <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_row(form.dateNaiss) }}
+                                    <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_row(form.password) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_row(form.confirmPassword) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_row(form.isArtist) }}
+                                </div>
+                                <button type="submit" class="btn oneMusic-btn mt-30"><i class="fa fa-check"></i> Inscription</button>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Login Area End ##### -->
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/bootstrap/bootstrap-datepiker.min.js') }} "></script>
+    <script>
+        $(document).ready(function(){
+            $('.js-datepicker').datepicker({
+                format: 'yyyy/mm/dd'
+            })
+        });
+    </script>
+{% endblock %}

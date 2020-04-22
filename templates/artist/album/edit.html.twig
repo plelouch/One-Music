@@ -1,0 +1,31 @@
+{% extends 'artist/base.html.twig' %}
+
+{% block title %}Modification de l'album {{ album.Titre }}{% endblock %}
+
+{% form_theme form "artist/album/_collection.html.twig" %}
+
+{% block body %}
+    <div class="app-title">
+
+        <div>
+            <h1><i class="fa fa-edit"></i> Modification de l'album {{ album.Titre }}</h1>
+            <p>Modifier les information concernant l'album</p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item">Gestion Album</li>
+            <li class="breadcrumb-item active"><a href="#">Modifier un album</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                {{ include('artist/album/_form.html.twig', {'button_label': 'Modifier'}) }}
+            </div>
+        </div>
+    </div>
+    <a href="{{ path('artist_album_index') }}"> <i class="fa fa-arrow-circle-left"></i> Retour à la liste</a>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/app.js') }}"></script>
+{% endblock %}

@@ -1,13 +1,48 @@
 security:
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: null }
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        artist:
+            pattern: ^/artist
+
+            anonymous: true
+
+            provider: app_user_provider
+
+            form_login:
+                check_path: artist_app_login
+                login_path: artist_app_login
+                default_target_path: artist_homepage
+
+            logout:
+                path: artist_app_logout
+                target: home
+
         main:
-            anonymous: lazy
+            anonymous: true
+
+            provider: app_user_provider
+
+            form_login:
+                check_path: app_login
+                login_path: app_login
+                default_target_path: home
+
+            logout:
+                path: app_logout
+                target: app_login
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -18,5 +53,6 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/artist/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/artist, roles: ROLE_ARTIST }
         # - { path: ^/profile, roles: ROLE_USER }

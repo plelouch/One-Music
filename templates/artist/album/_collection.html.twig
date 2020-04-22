@@ -1,0 +1,30 @@
+{% block _album_musics_row %}
+    <p>Ici vous pouvez ajouter vos musics</p>
+    <input type="hidden" id="widgets_counter" value="0">
+    {{ form_widget(form) }}
+    <div class="form-group">
+        <button type="button" id="add-music" class="btn btn-primary">
+            <i class="fa fa-plus"></i>
+            Ajouter une music !
+        </button>
+    </div>
+{% endblock %}
+{% block _album_musics_entry_row %}
+    <div class="form-group" id="block_{{ id }}">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col">
+                        {{ form_row(form.titre) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(form.song) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="button" data-action="delete" data-target="#block_{{ id }}" class="btn btn-danger">X</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
