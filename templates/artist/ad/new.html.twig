@@ -1,0 +1,25 @@
+{% extends 'artist/base.html.twig' %}
+
+{% block title %}Nouvelle publication{% endblock %}
+
+{% block body %}
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-plus"></i> Création d'un nouvelle publication</h1>
+            <p>Créer un publication et ajouter les musics</p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item">Gestion publication</li>
+            <li class="breadcrumb-item active"><a href="#">Créer une publication</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                {{ include('artist/ad/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+    <a href="{{ path('artist_ad_index') }}" class="btn btn-link"> <i class="fa fa-arrow-circle-left"></i> Retour à la liste</a>
+{% endblock %}

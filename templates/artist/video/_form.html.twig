@@ -1,0 +1,13 @@
+{{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_row(form.title) }}
+            {{ form_row(form.description) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.video) }}
+        </div>
+    </div>
+
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

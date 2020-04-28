@@ -1,0 +1,27 @@
+{% extends 'artist/base.html.twig' %}
+
+{% block title %}Modification du clip vidéo : {{ clip.title }}{% endblock %}
+
+{% block body %}
+    <div class="app-title">
+
+        <div>
+            <h1><i class="fa fa-edit"></i> Modification du clip vidéo : {{ clip.title }}</h1>
+            <p>Modifier les information concernant un clip vidéo</p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item">Gestion Clip Vidéo</li>
+            <li class="breadcrumb-item active"><a href="#">Modifier un clip vidéo</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                {{ include('artist/video/_form.html.twig', {'button_label': 'Modifier'}) }}
+            </div>
+        </div>
+    </div>
+    <a href="{{ path('artist_clip_index') }}"> <i class="fa fa-arrow-circle-left"></i> Retour à la liste</a>
+
+{% endblock %}

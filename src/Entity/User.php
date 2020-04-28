@@ -83,9 +83,27 @@ class User implements UserInterface
      */
     private $isArtist;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Ad", mappedBy="author", orphanRemoval=true)
+     */
+    private $ads;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Clip", mappedBy="author", orphanRemoval=true)
+     */
+    private $clips;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Single", mappedBy="author", orphanRemoval=true)
+     */
+    private $singles;
+
     public function __construct()
     {
         $this->albums = new ArrayCollection();
+        $this->ads = new ArrayCollection();
+        $this->clips = new ArrayCollection();
+        $this->singles = new ArrayCollection();
     }
 
     public  function getArtistName()
@@ -253,6 +271,99 @@ class User implements UserInterface
     public function setIsArtist(bool $isArtist): self
     {
         $this->isArtist = $isArtist;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Ad[]
+     */
+    public function getAds(): Collection
+    {
+        return $this->ads;
+    }
+
+    public function addAd(Ad $ad): self
+    {
+        if (!$this->ads->contains($ad)) {
+            $this->ads[] = $ad;
+            $ad->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAd(Ad $ad): self
+    {
+        if ($this->ads->contains($ad)) {
+            $this->ads->removeElement($ad);
+            // set the owning side to null (unless already changed)
+            if ($ad->getAuthor() === $this) {
+                $ad->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Clip[]
+     */
+    public function getClips(): Collection
+    {
+        return $this->clips;
+    }
+
+    public function addClip(Clip $clip): self
+    {
+        if (!$this->clips->contains($clip)) {
+            $this->clips[] = $clip;
+            $clip->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClip(Clip $clip): self
+    {
+        if ($this->clips->contains($clip)) {
+            $this->clips->removeElement($clip);
+            // set the owning side to null (unless already changed)
+            if ($clip->getAuthor() === $this) {
+                $clip->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Single[]
+     */
+    public function getSingles(): Collection
+    {
+        return $this->singles;
+    }
+
+    public function addSingle(Single $single): self
+    {
+        if (!$this->singles->contains($single)) {
+            $this->singles[] = $single;
+            $single->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSingle(Single $single): self
+    {
+        if ($this->singles->contains($single)) {
+            $this->singles->removeElement($single);
+            // set the owning side to null (unless already changed)
+            if ($single->getAuthor() === $this) {
+                $single->setAuthor(null);
+            }
+        }
 
         return $this;
     }

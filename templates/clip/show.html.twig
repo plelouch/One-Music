@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clip{% endblock %}
+
+{% block body %}
+    <h1>Clip</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ clip.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ clip.title }}</td>
+            </tr>
+            <tr>
+                <th>Video</th>
+                <td>{{ clip.video }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ clip.description }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ clip.createdAt ? clip.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('clip_index') }}">back to list</a>
+
+    <a href="{{ path('clip_edit', {'id': clip.id}) }}">edit</a>
+
+    {{ include('clip/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'artist/base.html.twig' %}
+
+{% block title %}Nouveau clip vidéo{% endblock %}
+
+{% form_theme form _self %}
+
+{% block stylesheets %}
+    <style>
+        #dropZone{
+            border: 3px dashed #000;
+            padding: 50px;
+            width: 500px;
+            margin-top: 20px;
+        }
+        #files{
+            border: 3px dashed #000;
+            padding: 20px;
+            width: 200px;
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-plus"></i> Création d'un nouveau clip vidéo</h1>
+            <p>Créer un clip vidéo </p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item">Gestion Clip Vidéo</li>
+            <li class="breadcrumb-item active"><a href="#">Créer un Clip Vidéo</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                {{ include('artist/video/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+    <a href="{{ path('artist_clip_index') }}" class="btn btn-link"> <i class="fa fa-arrow-circle-left"></i> Retour à la liste</a>
+{% endblock %}
+{% block _clip_video_widget %}
+    <div id="dropZone">
+        <h1>Drag & Drop Files</h1>
+        {{ form_widget(form) }}
+    </div>
+    <h1 id="progress"></h1><br><br>
+    <div id="files"></div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            var files = $("#files");
+
+            $("#clip_video").fileupload({
+                url: '/artist/clip/new',
+                dropZone: '#dropZone',
+                dataType: 'json',
+                autoUpload: false
+            }).on('fileuploadadd', function (e, data) {
+                var fileTypeAllowed = /.\.(mp4)$/i;
+                console.log(data);
+            }).on('fileuploaddone', function (e, data) {
+
+            }).on('fileuploadprogressall', function (e, data) {
+
+            });
+        });
+    </script>
+{% endblock %}

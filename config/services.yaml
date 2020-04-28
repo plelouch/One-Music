@@ -5,6 +5,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     album_image_directory: '%kernel.project_dir%/public/img/album'
+    ad_image_directory: '%kernel.project_dir%/public/img/ad'
+    artist_video_directory: '%kernel.project_dir%/public/video/'
 services:
     # default configuration for services in *this* file
     _defaults:

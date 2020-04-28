@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+    <div class="alert alert-light">
+        <h2 class="alert-heading text-center">
+            Tous sur la pub
+        </h2>
+        {{ form_widget(form) }}
+    </div>
+    <button class="btn btn-success">
+        <i class="fa fa-check"></i>{{ button_label|default('Enregister') }}</button>
+{{ form_end(form) }}

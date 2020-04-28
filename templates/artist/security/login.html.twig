@@ -19,7 +19,7 @@
                 <i class="icon ion-ios-locked-outline"></i>
             </div>
             {% if hasError %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                <div class="alert alert-danger">{{ hasError.messageKey|trans(hasError.messageData, 'security') }}</div>
             {% endif %}
             <div class="form-group">
                 <input class="form-control" type="text" name="_username" placeholder="Nom d'utilisateur" value="{{ last_username }}">

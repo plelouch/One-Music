@@ -1,0 +1,58 @@
+{% extends 'artist/base.html.twig' %}
+
+{% block title %}Liste des clips vidéos {% endblock %}
+
+{% block body %}
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-th-list"></i> Liste des clips vidéos</h1>
+            <p>La liste des clips vidéos que vous avez créer, <a href="{{ path('artist_clip_new') }}"><i class="fa fa-plus"></i> Ajouter un clip vidéo</a></p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item">Gestion Clip Vidéo</li>
+            <li class="breadcrumb-item active"><a href="#">Liste des clips vidéos</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <table class="table table-hover table-bordered" id="sampleTable">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>Video</th>
+                            <th>Description</th>
+                            <th>CreatedAt</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for clip in clips %}
+                                <tr>
+                                    <td>{{ clip.id }}</td>
+                                    <td>{{ clip.title }}</td>
+                                    <td>{{ clip.video }}</td>
+                                    <td>{{ clip.description }}</td>
+                                    <td>{{ clip.createdAt ? clip.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                    <td>
+                                        <a href="{{ path('artist_clip_show', {'id': clip.id}) }}">show</a>
+                                        <a href="{{ path('artist_clip_edit', {'id': clip.id}) }}">edit</a>
+
+                                        {{ include('artist/video/_delete_form.html.twig') }}
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="6">Vous n'avez pas de clip vidéo, créer une clip vidéo <a href="{{ path('artist_clip_new') }}"><i class="fa fa-plus"></i> Ajouter</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
