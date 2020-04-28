@@ -75,18 +75,6 @@
     "doctrine/reflection": {
         "version": "v1.1.0"
     },
-    "easycorp/easy-log-handler": {
-        "version": "1.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "1.0",
-            "ref": "70062abc2cd58794d2a90274502f81b55cd9951b"
-        },
-        "files": [
-            "./config/packages/dev/easy_log_handler.yaml"
-        ]
-    },
     "egulias/email-validator": {
         "version": "2.1.14"
     },
@@ -95,12 +83,6 @@
     },
     "jms/metadata": {
         "version": "2.1.0"
-    },
-    "knplabs/knp-components": {
-        "version": "v2.3.4"
-    },
-    "knplabs/knp-paginator-bundle": {
-        "version": "v5.1.2"
     },
     "monolog/monolog": {
         "version": "2.0.2"
@@ -151,18 +133,6 @@
         },
         "files": [
             "./config/packages/sensio_framework_extra.yaml"
-        ]
-    },
-    "symfony/apache-pack": {
-        "version": "1.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "1.0",
-            "ref": "410b9325a37ef86f1e47262c61738f6202202bca"
-        },
-        "files": [
-            "./public/.htaccess"
         ]
     },
     "symfony/asset": {
